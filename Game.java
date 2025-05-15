@@ -1,5 +1,5 @@
 /* Game Class Starter File
- * Authors: Joel A. Bianchi
+ * Authors: Samira Yasmin & Prakriti Chaudhary
  * Last Edit: 5/13/25
  * using new Screen show method
  */

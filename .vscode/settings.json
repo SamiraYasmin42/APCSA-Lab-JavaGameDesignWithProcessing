@@ -5,7 +5,27 @@
         "c:\\Program Files\\processing\\modes\\java\\libraries\\sound\\library\\sound.jar",
         "/Users/prakritic/Documents/Processing/libraries/**/*.jar",
         "/Users/prakritic/Documents/Processing/**/*.jar",
-        "/Applications/**/*.jar"
+        "/Applications/**/*.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\annotations-13.0.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\antlr-2.7.7.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\core-4.4.1.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-android-aarch64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-linux-aarch64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-linux-amd64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-linux-armv6hf.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-macosx-universal.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-2.5.0-natives-windows-amd64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\gluegen-rt-main-2.5.0.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-android-aarch64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-linux-aarch64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-linux-amd64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-linux-armv6hf.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-macosx-universal.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-windows-amd64.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-main-2.5.0.jar",
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\kotlin-stdlib-2.0.20.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }

@@ -32,7 +32,7 @@ public class Game extends PApplet{
 
   // VARIABLES: Level1Grid Screen
   Grid level1Grid;
-  String level1BgFile = "images/chess.jpg";
+  String level1BgFile = "images/maze1.jpg";
   PImage level1Bg;
   String player1File = "images/x_wood.png";
   PImage player1;   // Use PImage to display the image in a GridLocation
@@ -46,7 +46,7 @@ public class Game extends PApplet{
 
   // VARIABLES: Level2World Pixel-based Screen
   World level2World;
-  String level2BgFile = "images/sky.png";
+  String level2BgFile = "images/maze2.jpg";
   PImage level2Bg;
   String player3File = "images/zapdos.png";
   Sprite player3; //Use Sprite for a pixel-based Location

@@ -27,7 +27,7 @@ public class Game extends PApplet{
   // VARIABLES: Splash Screen
   Screen splashScreen;
   PImage splashBg;
-  String splashBgFile = "images/apcsa.png";
+  String splashBgFile = "images/startImage.jpg";
   //SoundFile song;
 
   // VARIABLES: Level1Grid Screen
@@ -91,7 +91,7 @@ public class Game extends PApplet{
 
     //SETUP: Load BG images used in all screens
     splashBg = p.loadImage(splashBgFile);
-    splashBg.resize(p.width, p.height);
+    splashBg.resize(800,600);
     level1Bg = p.loadImage(level1BgFile);
     level1Bg.resize(p.width, p.height);
     level2Bg = p.loadImage(level2BgFile);

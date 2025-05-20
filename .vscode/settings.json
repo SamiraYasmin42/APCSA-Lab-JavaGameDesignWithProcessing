@@ -6,5 +6,6 @@
         "/Users/prakritic/Documents/Processing/libraries/**/*.jar",
         "/Users/prakritic/Documents/Processing/**/*.jar",
         "/Applications/**/*.jar"
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }

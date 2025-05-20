@@ -27,7 +27,7 @@ public class Game extends PApplet{
   // VARIABLES: Splash Screen
   Screen splashScreen;
   PImage splashBg;
-  String splashBgFile = "images/apcsa.png";
+  String splashBgFile = "images/startImage.jpg";
   //SoundFile song;
 
   // VARIABLES: Level1Grid Screen

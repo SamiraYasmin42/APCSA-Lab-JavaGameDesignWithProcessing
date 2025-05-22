@@ -226,6 +226,20 @@ public class Game extends PApplet{
         player2Row++;
       }
 
+      if (p.key == 'w'){
+
+        player2Row--;
+      }
+
+      if (p.key == 'a'){
+        player2Col--;
+
+      }
+      if (p.key == 'd'){
+        player2Col++;
+
+      }
+
       // if the 'n' key is pressed, ask for their name
       if(p.key == 'n'){
         name = Input.getString("What is your name?");

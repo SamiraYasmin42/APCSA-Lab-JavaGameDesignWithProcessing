@@ -206,7 +206,7 @@ public class Game extends PApplet{
   public void keyPressed(){
 
     //check what key was pressed
-    System.out.println("\nKey pressed: " + p.keyCode); //key gives you a character for the key pressed
+    System.out.println("\nKey pressed: " + p.key); //key gives you a character for the key pressed
 
     //What to do when a key is pressed?
     

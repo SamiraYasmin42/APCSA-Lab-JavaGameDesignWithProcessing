@@ -35,9 +35,9 @@ public class Game extends PApplet{
   //SoundFile song;
 
   // VARIABLES: Level1Grid Screen
-  Grid level1Grid;
+  Grid maze1;
   String level1BgFile = "images/maze1.jpg";
-  PImage level1Bg;
+  PImage maze1Bg;
   String player1File = "images/x_wood.png";
   PImage player1;   // Use PImage to display the image in a GridLocation
   int player1Row = 3;
@@ -102,8 +102,8 @@ public class Game extends PApplet{
     //SETUP: Load BG images used in all screens
     splashBg = p.loadImage(splashBgFile);
     splashBg.resize(800,600);
-    level1Bg = p.loadImage(level1BgFile);
-    level1Bg.resize(p.width, p.height);
+    maze1Bg = p.loadImage(level1BgFile);
+    maze1Bg.resize(p.width, p.height);
     level2Bg = p.loadImage(level2BgFile);
     //level2Bg.resize(p.width, p.height);
     endBg = p.loadImage(endBgFile);
@@ -111,8 +111,8 @@ public class Game extends PApplet{
 
     //SETUP: Screens, Worlds, Grids
     splashScreen = new Screen(p, "splash", splashBg);
-    level1Grid = new Grid(p, "chessBoard", level1Bg, 6, 8);
-    // level1Grid.startPrintingGridMarks();
+    maze1 = new Grid(p, "maze1", maze1Bg, 14, 21);
+    maze1.startPrintingGridMarks();
     level2World = new World(p, "sky", level2BgFile, 4.0f, 0.0f, -800.0f); //moveable World constructor --> defines center & scale (x, scale, y)???
     
     System.out.println( "World constructed: " + Util.toStringPImage(level2World.getBgImage()));
@@ -126,9 +126,9 @@ public class Game extends PApplet{
 
     //SETUP: Level 1
     player1 = p.loadImage(player1File);
-    player1.resize(level1Grid.getTileWidth(),level1Grid.getTileHeight());
+    player1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     player2 = new AnimatedSprite(p, "sprites/chick_walk.png", "sprites/chick_walk.json", 0.0f, 0.0f, 0.5f);
-    level1Grid.setTileSprite(new GridLocation (player2Row, player2Col), player2);
+    maze1.setTileSprite(new GridLocation (player2Row, player2Col), player2);
 
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
     // b1.setFontStyle("fonts/spidermanFont.ttf");
@@ -211,7 +211,7 @@ public class Game extends PApplet{
     //What to do when a key is pressed?
     
     //KEYS FOR LEVEL1
-    if(currentScreen == level1Grid){
+    if(currentScreen == maze1){
 
       //set [W] key to move the player1 up & avoid Out-of-Bounds errors
       if(p.keyCode == 83){
@@ -245,7 +245,7 @@ public class Game extends PApplet{
     //CHANGING SCREENS BASED ON KEYS
     //change to level1 if 1 key pressed, level2 if 2 key is pressed
     if(p.key == '1'){
-      currentScreen = level1Grid;
+      currentScreen = maze1;
     } else if(p.key == '2'){
       currentScreen = level2World;
     } else if(p.key == '3'){
@@ -278,9 +278,9 @@ public class Game extends PApplet{
     }
 
     // what to do if clicked? (ex. assign a new location to player1)
-    if(currentScreen == level1Grid){
-      player1Row = level1Grid.getGridLocation().getRow();
-      player1Col = level1Grid.getGridLocation().getCol();
+    if(currentScreen == maze1){
+      player1Row = maze1.getGridLocation().getRow();
+      player1Col = maze1.getGridLocation().getCol();
     }
     
 
@@ -317,23 +317,23 @@ public class Game extends PApplet{
 
       // Change the screen to level 1 between 3 and 5 seconds
       if(splashScreen.getScreenTime() > 3000 && splashScreen.getScreenTime() < 5000){
-        currentScreen = level1Grid;
+        currentScreen = maze1;
       }
     }
 
     // UPDATE: level1Grid Screen
-    if(currentScreen == level1Grid){
+    if(currentScreen == maze1){
 
       // Print a '1' in console when level1
       System.out.print("1");
 
       // Displays the player1 image
       GridLocation player1Loc = new GridLocation(player1Row,player1Col);
-      level1Grid.setTileImage(player1Loc, player1);
+      maze1.setTileImage(player1Loc, player1);
 
       // Displays the player2 image
       GridLocation player2Loc = new GridLocation(player2Row, player2Col);
-      level1Grid.setTileSprite(player2Loc, player2);
+      maze1.setTileSprite(player2Loc, player2);
 
       // Moves to next level based on a button click
       b1.show();

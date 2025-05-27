@@ -126,7 +126,7 @@ public class Game extends PApplet{
     piece1 = p.loadImage(piece1File);
     piece1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     chick = new AnimatedSprite(p, chickFile, chickJson, 0.0f, 0.0f, 0.5f);
-    chick.resize(20,20);
+    chick.resize(40,40);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
     maze1.addSprite(b1);

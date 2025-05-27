@@ -481,5 +481,325 @@ public class Game extends PApplet{
 
   }
 
+  public PApplet getP() {
+    return p;
+  }
+
+  public void setP(PApplet p) {
+    this.p = p;
+  }
+
+  public String getTitleText() {
+    return titleText;
+  }
+
+  public void setTitleText(String titleText) {
+    this.titleText = titleText;
+  }
+
+  public String getExtraText() {
+    return extraText;
+  }
+
+  public void setExtraText(String extraText) {
+    this.extraText = extraText;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public AnimatedSprite getRunningHorse() {
+    return runningHorse;
+  }
+
+  public void setRunningHorse(AnimatedSprite runningHorse) {
+    this.runningHorse = runningHorse;
+  }
+
+  public boolean isDoAnimation() {
+    return doAnimation;
+  }
+
+  public void setDoAnimation(boolean doAnimation) {
+    this.doAnimation = doAnimation;
+  }
+
+  public Screen getSplashScreen() {
+    return splashScreen;
+  }
+
+  public void setSplashScreen(Screen splashScreen) {
+    this.splashScreen = splashScreen;
+  }
+
+  public PImage getSplashBg() {
+    return splashBg;
+  }
+
+  public void setSplashBg(PImage splashBg) {
+    this.splashBg = splashBg;
+  }
+
+  public String getSplashBgFile() {
+    return splashBgFile;
+  }
+
+  public void setSplashBgFile(String splashBgFile) {
+    this.splashBgFile = splashBgFile;
+  }
+
+  public Grid getMaze1() {
+    return maze1;
+  }
+
+  public void setMaze1(Grid maze1) {
+    this.maze1 = maze1;
+  }
+
+  public PImage getMaze1Bg() {
+    return maze1Bg;
+  }
+
+  public void setMaze1Bg(PImage maze1Bg) {
+    this.maze1Bg = maze1Bg;
+  }
+
+  public String getMaze1BgFile() {
+    return maze1BgFile;
+  }
+
+  public void setMaze1BgFile(String maze1BgFile) {
+    this.maze1BgFile = maze1BgFile;
+  }
+
+  public PImage getPiece1() {
+    return piece1;
+  }
+
+  public void setPiece1(PImage piece1) {
+    this.piece1 = piece1;
+  }
+
+  public String getPiece1File() {
+    return piece1File;
+  }
+
+  public void setPiece1File(String piece1File) {
+    this.piece1File = piece1File;
+  }
+
+  public int getPiece1Row() {
+    return piece1Row;
+  }
+
+  public void setPiece1Row(int piece1Row) {
+    this.piece1Row = piece1Row;
+  }
+
+  public int getPiece1Col() {
+    return piece1Col;
+  }
+
+  public void setPiece1Col(int piece1Col) {
+    this.piece1Col = piece1Col;
+  }
+
+  public AnimatedSprite getChick() {
+    return chick;
+  }
+
+  public void setChick(AnimatedSprite chick) {
+    this.chick = chick;
+  }
+
+  public String getChickFile() {
+    return chickFile;
+  }
+
+  public void setChickFile(String chickFile) {
+    this.chickFile = chickFile;
+  }
+
+  public String getChickJson() {
+    return chickJson;
+  }
+
+  public void setChickJson(String chickJson) {
+    this.chickJson = chickJson;
+  }
+
+  public int getChickRow() {
+    return chickRow;
+  }
+
+  public void setChickRow(int chickRow) {
+    this.chickRow = chickRow;
+  }
+
+  public int getChickCol() {
+    return chickCol;
+  }
+
+  public void setChickCol(int chickCol) {
+    this.chickCol = chickCol;
+  }
+
+  public int getHealth() {
+    return health;
+  }
+
+  public void setHealth(int health) {
+    this.health = health;
+  }
+
+  public Button getB1() {
+    return b1;
+  }
+
+  public void setB1(Button b1) {
+    this.b1 = b1;
+  }
+
+  public World getSkyWorld() {
+    return skyWorld;
+  }
+
+  public void setSkyWorld(World skyWorld) {
+    this.skyWorld = skyWorld;
+  }
+
+  public PImage getSkyWorldBg() {
+    return skyWorldBg;
+  }
+
+  public void setSkyWorldBg(PImage skyWorldBg) {
+    this.skyWorldBg = skyWorldBg;
+  }
+
+  public String getSkyWorldBgFile() {
+    return skyWorldBgFile;
+  }
+
+  public void setSkyWorldBgFile(String skyWorldBgFile) {
+    this.skyWorldBgFile = skyWorldBgFile;
+  }
+
+  public Sprite getZapdos() {
+    return zapdos;
+  }
+
+  public void setZapdos(Sprite zapdos) {
+    this.zapdos = zapdos;
+  }
+
+  public String getZapdosFile() {
+    return zapdosFile;
+  }
+
+  public void setZapdosFile(String zapdosFile) {
+    this.zapdosFile = zapdosFile;
+  }
+
+  public int getZapdosStartX() {
+    return zapdosStartX;
+  }
+
+  public void setZapdosStartX(int zapdosStartX) {
+    this.zapdosStartX = zapdosStartX;
+  }
+
+  public int getZapdosStartY() {
+    return zapdosStartY;
+  }
+
+  public void setZapdosStartY(int zapdosStartY) {
+    this.zapdosStartY = zapdosStartY;
+  }
+
+  public World getBrickWorld() {
+    return brickWorld;
+  }
+
+  public void setBrickWorld(World brickWorld) {
+    this.brickWorld = brickWorld;
+  }
+
+  public PImage getBrickWorldBg() {
+    return brickWorldBg;
+  }
+
+  public void setBrickWorldBg(PImage brickWorldBg) {
+    this.brickWorldBg = brickWorldBg;
+  }
+
+  public String getBrickWorldBgFile() {
+    return brickWorldBgFile;
+  }
+
+  public void setBrickWorldBgFile(String brickWorldBgFile) {
+    this.brickWorldBgFile = brickWorldBgFile;
+  }
+
+  public Platform getPlat() {
+    return plat;
+  }
+
+  public void setPlat(Platform plat) {
+    this.plat = plat;
+  }
+
+  public World getEndScreen() {
+    return endScreen;
+  }
+
+  public void setEndScreen(World endScreen) {
+    this.endScreen = endScreen;
+  }
+
+  public PImage getEndBg() {
+    return endBg;
+  }
+
+  public void setEndBg(PImage endBg) {
+    this.endBg = endBg;
+  }
+
+  public String getEndBgFile() {
+    return endBgFile;
+  }
+
+  public void setEndBgFile(String endBgFile) {
+    this.endBgFile = endBgFile;
+  }
+
+  public Screen getCurrentScreen() {
+    return currentScreen;
+  }
+
+  public void setCurrentScreen(Screen currentScreen) {
+    this.currentScreen = currentScreen;
+  }
+
+  public CycleTimer getSlowCycleTimer() {
+    return slowCycleTimer;
+  }
+
+  public void setSlowCycleTimer(CycleTimer slowCycleTimer) {
+    this.slowCycleTimer = slowCycleTimer;
+  }
+
+  public boolean isStart() {
+    return start;
+  }
+
+  public void setStart(boolean start) {
+    this.start = start;
+  }
+
 
 } //close class

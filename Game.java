@@ -126,6 +126,7 @@ public class Game extends PApplet{
     piece1 = p.loadImage(piece1File);
     piece1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     chick = new AnimatedSprite(p, chickFile, chickJson, 0.0f, 0.0f, 0.5f);
+    chick.resize(20,20);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
     maze1.addSprite(b1);
@@ -218,12 +219,17 @@ public class Game extends PApplet{
     //KEYS FOR LEVEL1
     if(currentScreen == maze1){
 
+      GridLocation nextloc;
       //set [S] key to move the chick down & avoid Out-of-Bounds errors
       if(p.keyCode == 83){        
         chickRow++;
       }
-      if (p.key == 'w'){
-        chickRow--;
+      if (p.key == 'w' && chickRow != 0 ){
+        GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+        if (!maze1.getMark(nextLoc).equals("R")){
+          chickRow--;
+        }
+          
       }
       if (p.key == 'a'){
         chickCol--;
@@ -292,8 +298,9 @@ public class Game extends PApplet{
 
     // what to do if clicked? (ex. assign a new location to piece1)
     if(currentScreen == maze1){
-      piece1Row = maze1.getGridLocation().getRow();
-      piece1Col = maze1.getGridLocation().getCol();
+
+
+
     }
     
 
@@ -343,8 +350,8 @@ public class Game extends PApplet{
       System.out.print("1");
 
       // Displays the piece1 image
-      GridLocation piece1Loc = new GridLocation(piece1Row,piece1Col);
-      maze1.setTileImage(piece1Loc, piece1);
+      // GridLocation piece1Loc = new GridLocation(piece1Row,piece1Col);
+      // maze1.setTileImage(piece1Loc, piece1);
 
       // Displays the chick image
       GridLocation chickLoc = new GridLocation(chickRow, chickCol);

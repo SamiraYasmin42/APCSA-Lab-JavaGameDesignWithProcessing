@@ -42,12 +42,12 @@ public class Game extends PApplet{
   AnimatedSprite chick;
   String chickFile = "sprites/chick_walk.png";
   String chickJson = "sprites/chick_walk.json";
-  int chickRow = 0;
-  int chickCol = 2;
+  int chickRow = 3;
+  int chickCol = 0;
   int health = 3;
   Button b1;
 
-  // VARIABLES: skyWorld Screen (characters move by pixels)
+  // VARIABLES: maze2 Screen (characters on grid)
   World skyWorld;
   PImage skyWorldBg;
   String skyWorldBgFile = "images/maze2.jpg";

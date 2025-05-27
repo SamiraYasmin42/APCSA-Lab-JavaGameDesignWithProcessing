@@ -137,7 +137,7 @@ public class Game extends PApplet{
     b1.setHoverColor(PColor.get(100,50,200));
     b1.setOutlineColor(PColor.WHITE);
     String[][] tileMarks = {
-      {"R","R","R","R","R","R","R","R"}, //14 rows and 21 columns
+      {"R","R","R","R","R","R","R","R","R"}, //14 rows and 21 columns
       {"","","","","","","",""},
       {"", "", "", "", "", "", "", ""},
       {"", "", "", "", "", "", "", ""},

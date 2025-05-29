@@ -47,20 +47,9 @@ public class Game extends PApplet{
   int health = 3;
   Button b1;
 
-  // VARIABLES: maze2 Screen (characters on grid)
-  World skyWorld;
-  PImage skyWorldBg;
-  String skyWorldBgFile = "images/maze2.jpg";
-  Sprite zapdos; //Use Sprite for a pixel-based Location
-  String zapdosFile = "images/zapdos.png";
-  int zapdosStartX = 50;
-  int zapdosStartY = 300;
+  // VARIABLES: maze2 Screen (pieces on a grid pattern)
+  Grid maze2;
 
-  //VARIABLES: brickWorld Screen (characters jump on platforms with gravity)
-  World brickWorld;
-  PImage brickWorldBg;
-  String brickWorldBgFile = "images/wall.jpg";
-  Platform plat;
 
   // VARIABLES: endScreen
   World endScreen;
@@ -101,21 +90,16 @@ public class Game extends PApplet{
     splashBg.resize(800,600);
     maze1Bg = p.loadImage(maze1BgFile);
     maze1Bg.resize(p.width, p.height);
-    skyWorldBg = p.loadImage(skyWorldBgFile);
-    brickWorldBg = loadImage(brickWorldBgFile);
     endBg = p.loadImage(endBgFile);
 
     //SETUP: If non-moving, Resize all BG images to exactly match the screen size
     splashBg.resize(p.width, p.height);
     maze1Bg.resize(p.width, p.height);
-    brickWorldBg.resize(p.width, p.height);
     endBg.resize(p.width, p.height);   
 
     //SETUP: Construct each Screen, World, Grid
     splashScreen = new Screen(p, "splash", splashBg);
     maze1 = new Grid(p, "maze1", maze1Bg, 14, 21);
-    skyWorld = new World(p, "sky", skyWorldBgFile, 4.0f, 0.0f, -800.0f); //moveable World constructor
-    brickWorld = new World(p,"platformer", brickWorldBg);
     endScreen = new World(p, "end", endBg);
     currentScreen = splashScreen;
 
@@ -145,20 +129,10 @@ public class Game extends PApplet{
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
     
-    //SETUP: Setup more skyWorld objects
-    zapdos = new Sprite(p, zapdosFile, 0.25f);
-    zapdos.moveTo(zapdosStartX, zapdosStartY);
-    skyWorld.addSprite(zapdos);
-    skyWorld.addSpriteCopyTo(runningHorse, 100, 200);  //example Sprite added to a World at a location, with a speed
-    skyWorld.printWorldSprites();
-    System.out.println("Done loading Level 2 (skyWorld)...");
+    //SETUP: Setup more maze2 objects
 
-    // SETUP: Setup more brickWorld objects
-    plat = new Platform(p, PColor.MAGENTA, 500.0f, 100.0f, 200.0f, 20.0f);
-    plat.setOutlineColor(PColor.BLACK);
-    plat.startGravity(5.0f); //sets gravity to a rate of 5.0
-    brickWorld.addSprite(plat);    
-    System.out.println("Done loading Level 3 (brickWorld)...");
+    System.out.println("Done loading Level 2 (maze2)...");
+
 
 
     //SETUP: Sound
@@ -260,25 +234,14 @@ public class Game extends PApplet{
 
     }
 
-    if(currentScreen == brickWorld){
-      if(p.key == 'w'){
-        plat.jump();
-      }
-    }
 
     //CHANGING SCREENS BASED ON KEYS
     //change to level1 if 1 key pressed, level2 if 2 key is pressed
     if(p.key == '1'){
       currentScreen = maze1;
     } else if(p.key == '2'){
-      currentScreen = skyWorld;
-    } else if(p.key == '3'){
-      currentScreen = brickWorld;
-
-      //reset the moving Platform every time the Screen is re-displayed
-      plat.moveTo(500.0f, 100.0f);
-      plat.setSpeed(0,0);
-    }
+      currentScreen = maze2;
+    } 
 
   }
 
@@ -367,35 +330,26 @@ public class Game extends PApplet{
       // b1.show();
       if(b1.isClicked()){
         System.out.println("\nButton Clicked");
-        currentScreen = skyWorld;
+        currentScreen = maze2;
       }
     
     }
     
-    // UPDATE: skyWorld Screen
-    if(currentScreen == skyWorld){
+    // UPDATE: maze2 Screen
+    if(currentScreen == maze2){
 
       // Print a '2' in console when skyWorld
       System.out.print("2");
 
-      // Set speed of moving skyWorld background
-      skyWorld.moveBgXY(-0.3f, 0f);
-
-    }
-
-    // UPDATE: brickWorld Screen
-    if(currentScreen == brickWorld){
-
-      // Print a '3 in console when brickWorld
-      System.out.print("3");
 
 
     }
+
 
     // UPDATE: End Screen
-    // if(currentScreen == endScreen){
+    if(currentScreen == endScreen){
 
-    // }
+    }
 
     // UPDATE: Any Screen
     if(doAnimation){
@@ -494,325 +448,328 @@ public class Game extends PApplet{
 
   }
 
-  public PApplet getP() {
-    return p;
-  }
-
-  public void setP(PApplet p) {
-    this.p = p;
-  }
-
-  public String getTitleText() {
-    return titleText;
-  }
-
-  public void setTitleText(String titleText) {
-    this.titleText = titleText;
-  }
-
-  public String getExtraText() {
-    return extraText;
-  }
-
-  public void setExtraText(String extraText) {
-    this.extraText = extraText;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public AnimatedSprite getRunningHorse() {
-    return runningHorse;
-  }
-
-  public void setRunningHorse(AnimatedSprite runningHorse) {
-    this.runningHorse = runningHorse;
-  }
-
-  public boolean isDoAnimation() {
-    return doAnimation;
-  }
-
-  public void setDoAnimation(boolean doAnimation) {
-    this.doAnimation = doAnimation;
-  }
-
-  public Screen getSplashScreen() {
-    return splashScreen;
-  }
-
-  public void setSplashScreen(Screen splashScreen) {
-    this.splashScreen = splashScreen;
-  }
-
-  public PImage getSplashBg() {
-    return splashBg;
-  }
-
-  public void setSplashBg(PImage splashBg) {
-    this.splashBg = splashBg;
-  }
-
-  public String getSplashBgFile() {
-    return splashBgFile;
-  }
-
-  public void setSplashBgFile(String splashBgFile) {
-    this.splashBgFile = splashBgFile;
-  }
-
-  public Grid getMaze1() {
-    return maze1;
-  }
-
-  public void setMaze1(Grid maze1) {
-    this.maze1 = maze1;
-  }
-
-  public PImage getMaze1Bg() {
-    return maze1Bg;
-  }
-
-  public void setMaze1Bg(PImage maze1Bg) {
-    this.maze1Bg = maze1Bg;
-  }
-
-  public String getMaze1BgFile() {
-    return maze1BgFile;
-  }
-
-  public void setMaze1BgFile(String maze1BgFile) {
-    this.maze1BgFile = maze1BgFile;
-  }
-
-  public PImage getPiece1() {
-    return piece1;
-  }
-
-  public void setPiece1(PImage piece1) {
-    this.piece1 = piece1;
-  }
-
-  public String getPiece1File() {
-    return piece1File;
-  }
-
-  public void setPiece1File(String piece1File) {
-    this.piece1File = piece1File;
-  }
-
-  public int getPiece1Row() {
-    return piece1Row;
-  }
-
-  public void setPiece1Row(int piece1Row) {
-    this.piece1Row = piece1Row;
-  }
-
-  public int getPiece1Col() {
-    return piece1Col;
-  }
-
-  public void setPiece1Col(int piece1Col) {
-    this.piece1Col = piece1Col;
-  }
-
-  public AnimatedSprite getChick() {
-    return chick;
-  }
-
-  public void setChick(AnimatedSprite chick) {
-    this.chick = chick;
-  }
-
-  public String getChickFile() {
-    return chickFile;
-  }
-
-  public void setChickFile(String chickFile) {
-    this.chickFile = chickFile;
-  }
-
-  public String getChickJson() {
-    return chickJson;
-  }
-
-  public void setChickJson(String chickJson) {
-    this.chickJson = chickJson;
-  }
-
-  public int getChickRow() {
-    return chickRow;
-  }
-
-  public void setChickRow(int chickRow) {
-    this.chickRow = chickRow;
-  }
-
-  public int getChickCol() {
-    return chickCol;
-  }
-
-  public void setChickCol(int chickCol) {
-    this.chickCol = chickCol;
-  }
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public Button getB1() {
-    return b1;
-  }
-
-  public void setB1(Button b1) {
-    this.b1 = b1;
-  }
-
-  public World getSkyWorld() {
-    return skyWorld;
-  }
-
-  public void setSkyWorld(World skyWorld) {
-    this.skyWorld = skyWorld;
-  }
-
-  public PImage getSkyWorldBg() {
-    return skyWorldBg;
-  }
-
-  public void setSkyWorldBg(PImage skyWorldBg) {
-    this.skyWorldBg = skyWorldBg;
-  }
-
-  public String getSkyWorldBgFile() {
-    return skyWorldBgFile;
-  }
-
-  public void setSkyWorldBgFile(String skyWorldBgFile) {
-    this.skyWorldBgFile = skyWorldBgFile;
-  }
-
-  public Sprite getZapdos() {
-    return zapdos;
-  }
-
-  public void setZapdos(Sprite zapdos) {
-    this.zapdos = zapdos;
-  }
-
-  public String getZapdosFile() {
-    return zapdosFile;
-  }
-
-  public void setZapdosFile(String zapdosFile) {
-    this.zapdosFile = zapdosFile;
-  }
-
-  public int getZapdosStartX() {
-    return zapdosStartX;
-  }
-
-  public void setZapdosStartX(int zapdosStartX) {
-    this.zapdosStartX = zapdosStartX;
-  }
-
-  public int getZapdosStartY() {
-    return zapdosStartY;
-  }
-
-  public void setZapdosStartY(int zapdosStartY) {
-    this.zapdosStartY = zapdosStartY;
-  }
-
-  public World getBrickWorld() {
-    return brickWorld;
-  }
-
-  public void setBrickWorld(World brickWorld) {
-    this.brickWorld = brickWorld;
-  }
-
-  public PImage getBrickWorldBg() {
-    return brickWorldBg;
-  }
-
-  public void setBrickWorldBg(PImage brickWorldBg) {
-    this.brickWorldBg = brickWorldBg;
-  }
-
-  public String getBrickWorldBgFile() {
-    return brickWorldBgFile;
-  }
-
-  public void setBrickWorldBgFile(String brickWorldBgFile) {
-    this.brickWorldBgFile = brickWorldBgFile;
-  }
-
-  public Platform getPlat() {
-    return plat;
-  }
-
-  public void setPlat(Platform plat) {
-    this.plat = plat;
-  }
-
-  public World getEndScreen() {
-    return endScreen;
-  }
-
-  public void setEndScreen(World endScreen) {
-    this.endScreen = endScreen;
-  }
-
-  public PImage getEndBg() {
-    return endBg;
-  }
-
-  public void setEndBg(PImage endBg) {
-    this.endBg = endBg;
-  }
-
-  public String getEndBgFile() {
-    return endBgFile;
-  }
-
-  public void setEndBgFile(String endBgFile) {
-    this.endBgFile = endBgFile;
-  }
-
-  public Screen getCurrentScreen() {
-    return currentScreen;
-  }
-
-  public void setCurrentScreen(Screen currentScreen) {
-    this.currentScreen = currentScreen;
-  }
-
-  public CycleTimer getSlowCycleTimer() {
-    return slowCycleTimer;
-  }
-
-  public void setSlowCycleTimer(CycleTimer slowCycleTimer) {
-    this.slowCycleTimer = slowCycleTimer;
-  }
-
-  public boolean isStart() {
-    return start;
-  }
-
-  public void setStart(boolean start) {
-    this.start = start;
-  }
-
-
 } //close class
+
+
+/*--------- UNNECESSARY GETTERS AND SETTERS -------------------- */
+
+  // public PApplet getP() {
+  //   return p;
+  // }
+
+  // public void setP(PApplet p) {
+  //   this.p = p;
+  // }
+
+  // public String getTitleText() {
+  //   return titleText;
+  // }
+
+  // public void setTitleText(String titleText) {
+  //   this.titleText = titleText;
+  // }
+
+  // public String getExtraText() {
+  //   return extraText;
+  // }
+
+  // public void setExtraText(String extraText) {
+  //   this.extraText = extraText;
+  // }
+
+  // public String getName() {
+  //   return name;
+  // }
+
+  // public void setName(String name) {
+  //   this.name = name;
+  // }
+
+  // public AnimatedSprite getRunningHorse() {
+  //   return runningHorse;
+  // }
+
+  // public void setRunningHorse(AnimatedSprite runningHorse) {
+  //   this.runningHorse = runningHorse;
+  // }
+
+  // public boolean isDoAnimation() {
+  //   return doAnimation;
+  // }
+
+  // public void setDoAnimation(boolean doAnimation) {
+  //   this.doAnimation = doAnimation;
+  // }
+
+  // public Screen getSplashScreen() {
+  //   return splashScreen;
+  // }
+
+  // public void setSplashScreen(Screen splashScreen) {
+  //   this.splashScreen = splashScreen;
+  // }
+
+  // public PImage getSplashBg() {
+  //   return splashBg;
+  // }
+
+  // public void setSplashBg(PImage splashBg) {
+  //   this.splashBg = splashBg;
+  // }
+
+  // public String getSplashBgFile() {
+  //   return splashBgFile;
+  // }
+
+  // public void setSplashBgFile(String splashBgFile) {
+  //   this.splashBgFile = splashBgFile;
+  // }
+
+  // public Grid getMaze1() {
+  //   return maze1;
+  // }
+
+  // public void setMaze1(Grid maze1) {
+  //   this.maze1 = maze1;
+  // }
+
+  // public PImage getMaze1Bg() {
+  //   return maze1Bg;
+  // }
+
+  // public void setMaze1Bg(PImage maze1Bg) {
+  //   this.maze1Bg = maze1Bg;
+  // }
+
+  // public String getMaze1BgFile() {
+  //   return maze1BgFile;
+  // }
+
+  // public void setMaze1BgFile(String maze1BgFile) {
+  //   this.maze1BgFile = maze1BgFile;
+  // }
+
+  // public PImage getPiece1() {
+  //   return piece1;
+  // }
+
+  // public void setPiece1(PImage piece1) {
+  //   this.piece1 = piece1;
+  // }
+
+  // public String getPiece1File() {
+  //   return piece1File;
+  // }
+
+  // public void setPiece1File(String piece1File) {
+  //   this.piece1File = piece1File;
+  // }
+
+  // public int getPiece1Row() {
+  //   return piece1Row;
+  // }
+
+  // public void setPiece1Row(int piece1Row) {
+  //   this.piece1Row = piece1Row;
+  // }
+
+  // public int getPiece1Col() {
+  //   return piece1Col;
+  // }
+
+  // public void setPiece1Col(int piece1Col) {
+  //   this.piece1Col = piece1Col;
+  // }
+
+  // public AnimatedSprite getChick() {
+  //   return chick;
+  // }
+
+  // public void setChick(AnimatedSprite chick) {
+  //   this.chick = chick;
+  // }
+
+  // public String getChickFile() {
+  //   return chickFile;
+  // }
+
+  // public void setChickFile(String chickFile) {
+  //   this.chickFile = chickFile;
+  // }
+
+  // public String getChickJson() {
+  //   return chickJson;
+  // }
+
+  // public void setChickJson(String chickJson) {
+  //   this.chickJson = chickJson;
+  // }
+
+  // public int getChickRow() {
+  //   return chickRow;
+  // }
+
+  // public void setChickRow(int chickRow) {
+  //   this.chickRow = chickRow;
+  // }
+
+  // public int getChickCol() {
+  //   return chickCol;
+  // }
+
+  // public void setChickCol(int chickCol) {
+  //   this.chickCol = chickCol;
+  // }
+
+  // public int getHealth() {
+  //   return health;
+  // }
+
+  // public void setHealth(int health) {
+  //   this.health = health;
+  // }
+
+  // public Button getB1() {
+  //   return b1;
+  // }
+
+  // public void setB1(Button b1) {
+  //   this.b1 = b1;
+  // }
+
+  // public World getSkyWorld() {
+  //   return skyWorld;
+  // }
+
+  // public void setSkyWorld(World skyWorld) {
+  //   this.skyWorld = skyWorld;
+  // }
+
+  // public PImage getSkyWorldBg() {
+  //   return skyWorldBg;
+  // }
+
+  // public void setSkyWorldBg(PImage skyWorldBg) {
+  //   this.skyWorldBg = skyWorldBg;
+  // }
+
+  // public String getSkyWorldBgFile() {
+  //   return skyWorldBgFile;
+  // }
+
+  // public void setSkyWorldBgFile(String skyWorldBgFile) {
+  //   this.skyWorldBgFile = skyWorldBgFile;
+  // }
+
+  // public Sprite getZapdos() {
+  //   return zapdos;
+  // }
+
+  // public void setZapdos(Sprite zapdos) {
+  //   this.zapdos = zapdos;
+  // }
+
+  // public String getZapdosFile() {
+  //   return zapdosFile;
+  // }
+
+  // public void setZapdosFile(String zapdosFile) {
+  //   this.zapdosFile = zapdosFile;
+  // }
+
+  // public int getZapdosStartX() {
+  //   return zapdosStartX;
+  // }
+
+  // public void setZapdosStartX(int zapdosStartX) {
+  //   this.zapdosStartX = zapdosStartX;
+  // }
+
+  // public int getZapdosStartY() {
+  //   return zapdosStartY;
+  // }
+
+  // public void setZapdosStartY(int zapdosStartY) {
+  //   this.zapdosStartY = zapdosStartY;
+  // }
+
+  // public World getBrickWorld() {
+  //   return brickWorld;
+  // }
+
+  // public void setBrickWorld(World brickWorld) {
+  //   this.brickWorld = brickWorld;
+  // }
+
+  // public PImage getBrickWorldBg() {
+  //   return brickWorldBg;
+  // }
+
+  // public void setBrickWorldBg(PImage brickWorldBg) {
+  //   this.brickWorldBg = brickWorldBg;
+  // }
+
+  // public String getBrickWorldBgFile() {
+  //   return brickWorldBgFile;
+  // }
+
+  // public void setBrickWorldBgFile(String brickWorldBgFile) {
+  //   this.brickWorldBgFile = brickWorldBgFile;
+  // }
+
+  // public Platform getPlat() {
+  //   return plat;
+  // }
+
+  // public void setPlat(Platform plat) {
+  //   this.plat = plat;
+  // }
+
+  // public World getEndScreen() {
+  //   return endScreen;
+  // }
+
+  // public void setEndScreen(World endScreen) {
+  //   this.endScreen = endScreen;
+  // }
+
+  // public PImage getEndBg() {
+  //   return endBg;
+  // }
+
+  // public void setEndBg(PImage endBg) {
+  //   this.endBg = endBg;
+  // }
+
+  // public String getEndBgFile() {
+  //   return endBgFile;
+  // }
+
+  // public void setEndBgFile(String endBgFile) {
+  //   this.endBgFile = endBgFile;
+  // }
+
+  // public Screen getCurrentScreen() {
+  //   return currentScreen;
+  // }
+
+  // public void setCurrentScreen(Screen currentScreen) {
+  //   this.currentScreen = currentScreen;
+  // }
+
+  // public CycleTimer getSlowCycleTimer() {
+  //   return slowCycleTimer;
+  // }
+
+  // public void setSlowCycleTimer(CycleTimer slowCycleTimer) {
+  //   this.slowCycleTimer = slowCycleTimer;
+  // }
+
+  // public boolean isStart() {
+  //   return start;
+  // }
+
+  // public void setStart(boolean start) {
+  //   this.start = start;
+  // }
+

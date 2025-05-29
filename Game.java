@@ -126,7 +126,7 @@ public class Game extends PApplet{
     piece1 = p.loadImage(piece1File);
     piece1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     chick = new AnimatedSprite(p, chickFile, chickJson, 0.0f, 0.0f, 0.5f);
-    chick.resize(40,40);
+    chick.resize(35,60);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
     maze1.addSprite(b1);
@@ -137,8 +137,9 @@ public class Game extends PApplet{
     b1.setHoverColor(PColor.get(100,50,200));
     b1.setOutlineColor(PColor.WHITE);
     String[][] tileMarks = { //14 rows and 21 columns
-      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, 
-      {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
+      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
+     // {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, 
+      {"R","R"," "," "," ","R"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "},
     };
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
@@ -217,26 +218,35 @@ public class Game extends PApplet{
 
       GridLocation nextloc;
       //set [S] key to move the chick down & avoid Out-of-Bounds errors
-      if(p.keyCode == 83){        
-        chickRow++;
+      if(p.keyCode == 83 && chickRow != 0){
+         GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+          if (!maze1.getMark(nextLoc).equals("R")){    
+          chickRow++;
+          }
       }
       if (p.key == 'w' && chickRow != 0 ){
         GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
         if (!maze1.getMark(nextLoc).equals("R")){
           chickRow--;
-        }
-          
+        }  
       }
       if (p.key == 'a'){
+         GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+         if (!maze1.getMark(nextLoc).equals("R")){
         chickCol--;
+         }
       }
       if (p.key == 'd'){
+         GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+         if (!maze1.getMark(nextLoc).equals("R")){
         chickCol++;
+         }
       }
 
       // if the 'n' key is pressed, ask for their name
       if(p.key == 'n'){
         name = Input.getString("What is your name?");
+        
       }
 
       // if the 't' key is pressed, then toggle the animation on/off

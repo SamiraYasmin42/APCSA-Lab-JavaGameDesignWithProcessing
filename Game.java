@@ -138,18 +138,18 @@ public class Game extends PApplet{
     b1.setOutlineColor(PColor.WHITE);
     String[][] tileMarks = {
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, //14 rows 21 cols
-      {"","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","", "","","","","","","","","","",""},
-      {"R","","","","","R","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
-      {"R","","","","","","","","","","","","","","","","","","","",""},
+      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
+      {"R","R","","","","R","","","","","","","","","","","","","","","R"},
+      {"R","R","","","","R","","","","","","","","","","","","","","",""},
+      {"","","","R","","R","","R","","R","","","","","","","","","","",""},
+      {"R","R","","R","","","","R","","R","","","","","","","","","","",""},
+      {"R","R","","R","R","R","R","R","","R","","","","","","","","","","",""},
+      {"R","R","","","","","","R","","R","","","","","","","","","","",""},
+      {"R","R","","","","R","","R","","R","R","R","","","","","","","","",""},
+      {"R","R","","R","","R","","R","","","","","","","","","","","","",""},
+      {"R","R","","R","","R","","R","","","","","","","","","","","","",""},
+      {"R","R","","R","","","","","","","","","","","","","","","","",""},
+      {"R","R","","","","","","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
       {"R","","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
 
     };
@@ -230,9 +230,6 @@ public class Game extends PApplet{
 
       GridLocation nextloc;
       //set [S] key to move the chick down & avoid Out-of-Bounds errors
-      if(p.keyCode == 83){        
-        chickRow++;
-      }
       if (p.key == 'w' ){
         GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
         if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
@@ -241,19 +238,19 @@ public class Game extends PApplet{
           
       }
       if (p.key == 'a'){
-        GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+        GridLocation nextLoc = new GridLocation(chickRow, chickCol-1);
         if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
           chickCol--;
         }
       }
       if (p.key == 'd'){
-        GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+        GridLocation nextLoc = new GridLocation(chickRow, chickCol + 1);
         if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
           chickCol++;
         }
       }
       if (p.key == 's'){
-        GridLocation nextLoc = new GridLocation(chickRow-1, chickCol);
+        GridLocation nextLoc = new GridLocation(chickRow+1, chickCol);
         if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
           chickRow++;
         }

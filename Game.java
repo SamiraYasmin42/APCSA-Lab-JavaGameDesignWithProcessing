@@ -113,7 +113,7 @@ public class Game extends PApplet{
 
     //SETUP: Construct each Screen, World, Grid
     splashScreen = new Screen(p, "splash", splashBg);
-    maze1 = new Grid(p, "maze1", maze1Bg, 14, 21);
+    maze1 = new Grid(p, "maze1", maze1Bg, 15, 21);
     skyWorld = new World(p, "sky", skyWorldBgFile, 4.0f, 0.0f, -800.0f); //moveable World constructor
     brickWorld = new World(p,"platformer", brickWorldBg);
     endScreen = new World(p, "end", endBg);
@@ -126,7 +126,7 @@ public class Game extends PApplet{
     piece1 = p.loadImage(piece1File);
     piece1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     chick = new AnimatedSprite(p, chickFile, chickJson, 0.0f, 0.0f, 0.5f);
-    chick.resize(30,30);
+    chick.resize(40,30);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
     maze1.addSprite(b1);
@@ -137,20 +137,21 @@ public class Game extends PApplet{
     b1.setHoverColor(PColor.get(100,50,200));
     b1.setOutlineColor(PColor.WHITE);
     String[][] tileMarks = {
-      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, //14 rows 21 cols
+      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, //15 rows 21 cols
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
-      {"R","R","","","","R","","","","","","","","","","","","","","","R"},
-      {"R","R","","","","R","","","","","","","","","","","","","","",""},
-      {"","","","R","","R","","R","","R","","","","","","","","","","",""},
-      {"R","R","","R","","","","R","","R","","","","","","","","","","",""},
-      {"R","R","","R","R","R","R","R","","R","","","","","","","","","","",""},
-      {"R","R","","","","","","R","","R","","","","","","","","","","",""},
-      {"R","R","","","","R","","R","","R","R","R","","","","","","","","",""},
-      {"R","R","","R","","R","","R","","","","","","","","","","","","",""},
-      {"R","R","","R","","R","","R","","","","","","","","","","","","",""},
-      {"R","R","","R","","","","","","","","","","","","","","","","",""},
-      {"R","R","","","","","","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
-      {"R","","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
+      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
+      {"R","R"," "," "," ","R"," "," "," "," "," ","R"," "," "," "," "," "," "," ","R","R"},
+      {" ","S"," ","R"," ","R"," ","R"," ","R"," ","R"," ","R","R","R","R","R"," ","R","R"},
+      {" "," "," ","R"," "," "," ","R"," ","R"," ","R"," ","R"," "," "," ","R"," ","R","R"},
+      {"R","R"," ","R","R","R","R","R"," ","R"," ","R"," ","R"," ","R","R","R"," ","R","R"},
+      {"R","R"," "," "," "," "," ","R"," ","R"," "," "," "," "," "," "," "," "," "," "," "},
+      {"R","R"," "," "," "," "," ","R"," ","R"," "," "," "," "," "," "," "," "," "," "," "},
+      {"R","R"," "," "," ","R"," ","R"," ","R","R","R"," "," "," "," "," "," "," "," "," "},
+      {"R","R"," ","R"," ","R"," ","R"," "," "," "," "," "," "," "," "," "," "," "," "," "},
+      {"R","R"," ","R"," ","R"," ","R"," "," "," "," "," "," "," "," "," "," "," "," "," "},
+      {"R","R"," ","R"," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," ","E"},
+      {"R","R"," "," "," "," "," ","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
+      {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
 
     };
     maze1.setAllMarks(tileMarks);
@@ -239,19 +240,19 @@ public class Game extends PApplet{
       }
       if (p.key == 'a'){
         GridLocation nextLoc = new GridLocation(chickRow, chickCol-1);
-        if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
+        if (!maze1.getMark(nextLoc).equals("R") && chickCol != 0){
           chickCol--;
         }
       }
       if (p.key == 'd'){
         GridLocation nextLoc = new GridLocation(chickRow, chickCol + 1);
-        if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
+        if (!maze1.getMark(nextLoc).equals("R") && chickCol!= maze1.getNumCols()-1){
           chickCol++;
         }
       }
       if (p.key == 's'){
         GridLocation nextLoc = new GridLocation(chickRow+1, chickCol);
-        if (!maze1.getMark(nextLoc).equals("R") && chickRow != 0){
+        if (!maze1.getMark(nextLoc).equals("R") && chickRow != maze1.getNumRows()-1){
           chickRow++;
         }
       }
@@ -266,6 +267,10 @@ public class Game extends PApplet{
         //Toggle the animation on & off
         doAnimation = !doAnimation;
         System.out.println("doAnimation: " + doAnimation);
+      }
+
+      if ("e".equals(maze1.getMark(new GridLocation(chickRow, chickCol)))){
+        currentScreen = endScreen;
       }
 
 

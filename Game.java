@@ -382,10 +382,10 @@ public class Game extends PApplet{
 
       // Moves to next level based on a button click
       // b1.show();
-      if(b1.isClicked()){
-        System.out.println("\nButton Clicked");
-        currentScreen = skyWorld;
-      }
+      //if(b1.isClicked()){
+      //  System.out.println("\nButton Clicked");
+      //  currentScreen = skyWorld;
+     //}
     
     }
     
@@ -396,7 +396,7 @@ public class Game extends PApplet{
       System.out.print("2");
 
       // Set speed of moving skyWorld background
-      skyWorld.moveBgXY(-0.3f, 0f);
+     // skyWorld.moveBgXY(-0.3f, 0f);
 
     }
 

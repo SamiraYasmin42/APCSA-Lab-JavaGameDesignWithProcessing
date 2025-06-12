@@ -129,7 +129,7 @@ public class Game extends PApplet{
     chick.resize(40,30);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
     b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
-    maze1.addSprite(b1);
+    //maze1.addSprite(b1);
     // b1.setFontStyle("fonts/spidermanFont.ttf");
     b1.setFontStyle("Calibri");
     b1.setTextColor(PColor.WHITE);

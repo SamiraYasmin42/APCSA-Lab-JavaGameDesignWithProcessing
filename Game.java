@@ -28,7 +28,7 @@ public class Game extends PApplet{
   // VARIABLES: splashScreen
   Screen splashScreen;
   PImage splashBg;
-  String splashBgFile = "images/start.png";
+  String splashBgFile = "images/startmaze.png";
   //SoundFile song;
 
   // VARIABLES: maze1 Screen (pieces on a grid pattern)
@@ -65,7 +65,7 @@ public class Game extends PApplet{
   // VARIABLES: endScreen
   World endScreen;
   PImage endBg;
-  String endBgFile = "images/youwin.png";
+  String endBgFile = "images/winScreen.png";
 
 
   // VARIABLES: Tracking the current Screen being displayed

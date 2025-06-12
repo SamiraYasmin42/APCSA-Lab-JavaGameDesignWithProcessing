@@ -166,7 +166,7 @@ public class Game extends PApplet{
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
-    timer = new Button(p, "RECT", 100,10, 0, 50, "1:00");
+    timer = new Button(p, "RECT", 100,10, 150, 50, "1:00");
     mazeTime = new CycleTimer(p, 45000);
     timer.setText("Time Left: "+ (double)(mazeTime.getCycleTime())/1000 );
     maze1.addSprite(timer);
@@ -515,10 +515,9 @@ public class Game extends PApplet{
   // Indicates when the main game is over
   public boolean isGameOver(){
 
-    if(mazeTime.getCycleTime() > 45000 )
+    if(mazeTime.getCycleTime() >= 45000 )
     {
-      return true;
-      //currentScreen = endBgFile2;
+      currentScreen = endScreen2;
     }
     
     return false; //by default, the game is never over

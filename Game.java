@@ -46,6 +46,9 @@ public class Game extends PApplet{
   int chickCol = 1;
   int health = 3;
   Button b1;
+  Button timer;
+  CycleTimer mazeTime;
+
 
   // VARIABLES: maze2 Screen (characters on grid)
   World skyWorld;
@@ -64,8 +67,11 @@ public class Game extends PApplet{
 
   // VARIABLES: endScreen
   World endScreen;
+  World endScreen2;
   PImage endBg;
+  PImage endBg2;
   String endBgFile = "images/winScreen.png";
+  String endBgFile2 = "images/loseScreen.png";
 
 
   // VARIABLES: Tracking the current Screen being displayed
@@ -154,10 +160,19 @@ public class Game extends PApplet{
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
 
     };
+   // Button timer = new Button(p, "RECT", 100,100, 500, 500, "1:00");
+   // CycleTimer mazeTime = new CycleTimer(p, 60000);
+   // mazeTime.setText(mazeTime.getCycleTime());
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
-    
+    timer = new Button(p, "RECT", 100,10, 0, 50, "1:00");
+    mazeTime = new CycleTimer(p, 45000);
+    timer.setText("Time Left: "+ (double)(mazeTime.getCycleTime())/1000 );
+    maze1.addSprite(timer);
+
+
+
     //SETUP: Setup more skyWorld objects
     zapdos = new Sprite(p, zapdosFile, 0.25f);
     zapdos.moveTo(zapdosStartX, zapdosStartY);
@@ -372,6 +387,9 @@ public class Game extends PApplet{
       // Print a '1' in console when level1
       System.out.print("1");
 
+
+      timer.setText("Time Left: "+(double)(mazeTime.getCycleTime()/1000) );
+
       // Displays the piece1 image
       // GridLocation piece1Loc = new GridLocation(piece1Row,piece1Col);
       // maze1.setTileImage(piece1Loc, piece1);
@@ -496,6 +514,12 @@ public class Game extends PApplet{
 
   // Indicates when the main game is over
   public boolean isGameOver(){
+
+    if(mazeTime.getCycleTime() > 45000 )
+    {
+      return true;
+      //currentScreen = endBgFile2;
+    }
     
     return false; //by default, the game is never over
   }

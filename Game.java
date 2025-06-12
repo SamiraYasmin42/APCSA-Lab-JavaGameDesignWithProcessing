@@ -131,7 +131,7 @@ public class Game extends PApplet{
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
-    timer = new Button(p, "RECT", 100,10, 150, 50, "1:00");
+    timer = new Button(p, "RECT", 100,10, 165, 50, "1:00");
     mazeTime = new CycleTimer(p, 45000);
     timer.setText("Time Left: "+ (double)(mazeTime.getTime())/1000 );
     maze1.addSprite(timer);

@@ -355,7 +355,7 @@ public class Game extends PApplet{
   // Indicates when the main game is over
   public boolean isGameOver(){
 
-    if(mazeTime.getCycleTime() > 45000 )
+    if(mazeTime.getTime() > 45000 )
     {
       currentScreen = endScreen2;
     }

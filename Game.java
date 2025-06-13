@@ -35,35 +35,15 @@ public class Game extends PApplet{
   Grid maze1;
   PImage maze1Bg;
   String maze1BgFile = "images/maze1.jpg";
-  PImage piece1;   // Use PImage to display the image in a GridLocation
-  String piece1File = "images/x_wood.png";
-  int piece1Row = 3;
-  int piece1Col = 0;
   AnimatedSprite chick;
   String chickFile = "sprites/chick_walk.png";
   String chickJson = "sprites/chick_walk.json";
   int chickRow = 4;
   int chickCol = 1;
-  int health = 3;
   Button b1;
   Button timer;
   CycleTimer mazeTime;
 
-
-  // VARIABLES: maze2 Screen (characters on grid)
-  World skyWorld;
-  PImage skyWorldBg;
-  String skyWorldBgFile = "images/maze2.jpg";
-  Sprite zapdos; //Use Sprite for a pixel-based Location
-  String zapdosFile = "images/zapdos.png";
-  int zapdosStartX = 50;
-  int zapdosStartY = 300;
-
-  //VARIABLES: brickWorld Screen (characters jump on platforms with gravity)
-  World brickWorld;
-  PImage brickWorldBg;
-  String brickWorldBgFile = "images/wall.jpg";
-  Platform plat;
 
   // VARIABLES: endScreen
   World endScreen;
@@ -107,41 +87,27 @@ public class Game extends PApplet{
     splashBg.resize(800,600);
     maze1Bg = p.loadImage(maze1BgFile);
     maze1Bg.resize(p.width, p.height);
-    skyWorldBg = p.loadImage(skyWorldBgFile);
-    brickWorldBg = loadImage(brickWorldBgFile);
     endBg = p.loadImage(endBgFile);
 
-    //SETUP: If non-moving, Resize all BG images to exactly match the screen size
-    splashBg.resize(p.width, p.height);
-    maze1Bg.resize(p.width, p.height);
-    brickWorldBg.resize(p.width, p.height);
-    endBg.resize(p.width, p.height);   
+    // //SETUP: If non-moving, Resize all BG images to exactly match the screen size
+    // splashBg.resize(p.width, p.height);
+    // maze1Bg.resize(p.width, p.height);
+    // endBg.resize(p.width, p.height);   
 
     //SETUP: Construct each Screen, World, Grid
-    splashScreen = new Screen(p, "splash", splashBg);
-    maze1 = new Grid(p, "maze1", maze1Bg, 15, 21);
-    skyWorld = new World(p, "sky", skyWorldBgFile, 4.0f, 0.0f, -800.0f); //moveable World constructor
-    brickWorld = new World(p,"platformer", brickWorldBg);
-    endScreen = new World(p, "end", endBg);
+    splashScreen = new Screen(p, "splash", splashBgFile);
+    maze1 = new Grid(p, "maze1", maze1BgFile, 15, 21);
+    endScreen = new World(p, "end", endBgFile);
+    endScreen2 = new World(p, "end2", endBgFile2);
     currentScreen = splashScreen;
 
     //SETUP: Construct Game objects used in All Screens
     runningHorse = new AnimatedSprite(p, "sprites/horse_run.png", "sprites/horse_run.json", 50.0f, 75.0f, 1.0f);
 
     //SETUP: Setup more maze1 objects
-    piece1 = p.loadImage(piece1File);
-    piece1.resize(maze1.getTileWidth(),maze1.getTileHeight());
     chick = new AnimatedSprite(p, chickFile, chickJson, 0.0f, 0.0f, 0.5f);
     chick.resize(40,30);
     maze1.setTileSprite(new GridLocation (chickRow, chickCol), chick);
-    b1 = new Button(p, "rect", 625, 525, 150, 50, "GoTo Level 2");
-    //maze1.addSprite(b1);
-    // b1.setFontStyle("fonts/spidermanFont.ttf");
-    b1.setFontStyle("Calibri");
-    b1.setTextColor(PColor.WHITE);
-    b1.setButtonColor(PColor.BLACK);
-    b1.setHoverColor(PColor.get(100,50,200));
-    b1.setOutlineColor(PColor.WHITE);
     String[][] tileMarks = {
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"}, //15 rows 21 cols
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
@@ -163,27 +129,15 @@ public class Game extends PApplet{
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
-    timer = new Button(p, "RECT", 100,10, 0, 50, "1:00");
+    timer = new Button(p, "RECT", 300,10, 175, 50, "1:00");
     mazeTime = new CycleTimer(p, 45000);
-    timer.setText("Time Left: "+ (double)(mazeTime.getCycleTime())/1000 );
+    timer.setText("Time Now: "+ (double)(mazeTime.getTime())/1000 );
     maze1.addSprite(timer);
 
+    //edit the timer
+    timer.setButtonColor(PColor.WHITE);
 
-
-    //SETUP: Setup more skyWorld objects
-    zapdos = new Sprite(p, zapdosFile, 0.25f);
-    zapdos.moveTo(zapdosStartX, zapdosStartY);
-    skyWorld.addSprite(zapdos);
-    skyWorld.addSpriteCopyTo(runningHorse, 100, 200);  //example Sprite added to a World at a location, with a speed
-    skyWorld.printWorldSprites();
-    System.out.println("Done loading Level 2 (skyWorld)...");
-
-    // SETUP: Setup more brickWorld objects
-    plat = new Platform(p, PColor.MAGENTA, 500.0f, 100.0f, 200.0f, 20.0f);
-    plat.setOutlineColor(PColor.BLACK);
-    plat.startGravity(5.0f); //sets gravity to a rate of 5.0
-    brickWorld.addSprite(plat);    
-    System.out.println("Done loading Level 3 (brickWorld)...");
+    System.out.println("Done loading Level 1 (maze1)...");
 
 
     //SETUP: Sound
@@ -213,8 +167,7 @@ public class Game extends PApplet{
 
     // DRAW LOOP: Populate & Move Sprites
     if(slowCycleTimer.isDone()){
-      populateSprites();
-      moveSprites();
+
     }
 
     // DRAW LOOP: Pause Game Cycle
@@ -289,24 +242,14 @@ public class Game extends PApplet{
 
     }
 
-    if(currentScreen == brickWorld){
-      if(p.key == 'w'){
-        plat.jump();
-      }
-    }
-
     //CHANGING SCREENS BASED ON KEYS
     //change to level1 if 1 key pressed, level2 if 2 key is pressed
     if(p.key == '1'){
       currentScreen = maze1;
+    } else if(p.key == 'e'){
+      currentScreen = endScreen;
     } else if(p.key == '2'){
-      currentScreen = skyWorld;
-    } else if(p.key == '3'){
-      currentScreen = brickWorld;
-
-      //reset the moving Platform every time the Screen is re-displayed
-      plat.moveTo(500.0f, 100.0f);
-      plat.setSpeed(0,0);
+      currentScreen = endScreen2;
     }
 
   }
@@ -353,7 +296,7 @@ public class Game extends PApplet{
       extraText = currentScreen.getName();
 
       //set the title each loop
-      surface.setTitle(titleText + "\t// CurrentScreen: " + extraText + " \t // Name: " + name + "\t // Health: " + health );
+      surface.setTitle(titleText + "\t// CurrentScreen: " + extraText + " \t // Name: " + name );
 
       //adjust the extra text as desired
     
@@ -381,53 +324,23 @@ public class Game extends PApplet{
     // UPDATE: level1Grid Screen
     if(currentScreen == maze1){
 
-      // Print a '1' in console when level1
+      // Print a '1' in console when maze1
       System.out.print("1");
 
-
-      timer.setText("Time Left: "+(double)(mazeTime.getCycleTime()/1000) );
-
-      // Displays the piece1 image
-      // GridLocation piece1Loc = new GridLocation(piece1Row,piece1Col);
-      // maze1.setTileImage(piece1Loc, piece1);
+      timer.setText("Time Now: "+(double)(mazeTime.getTime()/1000) );
 
       // Displays the chick image
       GridLocation chickLoc = new GridLocation(chickRow, chickCol);
       maze1.setTileSprite(chickLoc, chick);
 
-      // Moves to next level based on a button click
-      // b1.show();
-      //if(b1.isClicked()){
-      //  System.out.println("\nButton Clicked");
-      //  currentScreen = skyWorld;
-     //}
     
     }
     
-    // UPDATE: skyWorld Screen
-    if(currentScreen == skyWorld){
-
-      // Print a '2' in console when skyWorld
-      System.out.print("2");
-
-      // Set speed of moving skyWorld background
-     // skyWorld.moveBgXY(-0.3f, 0f);
-
-    }
-
-    // UPDATE: brickWorld Screen
-    if(currentScreen == brickWorld){
-
-      // Print a '3 in console when brickWorld
-      System.out.print("3");
-
-
-    }
 
     // UPDATE: End Screen
-    // if(currentScreen == endScreen){
+    if(currentScreen == endScreen){
 
-    // }
+    }
 
     // UPDATE: Any Screen
     if(doAnimation){
@@ -439,83 +352,13 @@ public class Game extends PApplet{
 
   }
 
-  // Populates enemies or other sprites on the Screen
-  public void populateSprites(){
-
-    //What is the index for the last column?
-    
-
-    //Loop through all the rows in the last column
-
-      //Generate a random number
-
-
-      //10% of the time, decide to add an enemy image to a Tile
-      
-
-  }
-
-  // Moves around the enemies/sprites on the Screen
-  public void moveSprites(){
-
-    //Loop through all of the rows & cols in the grid
-
-        //Store the current GridLocation
-
-        //Store the next GridLocation
-
-        //Check if the current tile has an image that is not piece1      
-
-
-          //Get image/sprite from current location
-            
-
-          //CASE 1: Collision with piece1
-
-
-          //CASE 2: Move enemy over to new location
-
-
-          //Erase image/sprite from old location
-
-          //System.out.println(loc + " " + grid.hasTileImage(loc));
-
-            
-        //CASE 3: Enemy leaves screen at first column
-
-  }
-
-  // Checks if there is a collision between Sprites on the Screen
-  public boolean checkCollision(GridLocation loc, GridLocation nextLoc){
-
-    //Check what image/sprite is stored in the CURRENT location
-    // PImage image = grid.getTileImage(loc);
-    // AnimatedSprite sprite = grid.getTileSprite(loc);
-
-    //if empty --> no collision
-
-    //Check what image/sprite is stored in the NEXT location
-
-    //if empty --> no collision
-
-    //check if enemy runs into player
-
-      //clear out the enemy if it hits the player (using cleartTileImage() or clearTileSprite() from Grid class)
-
-      //Update status variable
-
-    //check if a player collides into enemy
-
-    return false; //<--default return
-  }
 
   // Indicates when the main game is over
   public boolean isGameOver(){
 
-    if(mazeTime.getCycleTime() > 45000 )
+    if(mazeTime.getTime() > 45000 )
     {
-      return true;
-      //currentScreen = endBgFile2;
+      currentScreen = endScreen2;
     }
     
     return false; //by default, the game is never over
@@ -528,329 +371,10 @@ public class Game extends PApplet{
       // Update the title bar
 
       // Show any end imagery
-      currentScreen = endScreen;
+      currentScreen = endScreen2;
 
   }
 
-  public PApplet getP() {
-    return p;
-  }
-
-  public void setP(PApplet p) {
-    this.p = p;
-  }
-
-  public String getTitleText() {
-    return titleText;
-  }
-
-  public void setTitleText(String titleText) {
-    this.titleText = titleText;
-  }
-
-  public String getExtraText() {
-    return extraText;
-  }
-
-  public void setExtraText(String extraText) {
-    this.extraText = extraText;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public AnimatedSprite getRunningHorse() {
-    return runningHorse;
-  }
-
-  public void setRunningHorse(AnimatedSprite runningHorse) {
-    this.runningHorse = runningHorse;
-  }
-
-  public boolean isDoAnimation() {
-    return doAnimation;
-  }
-
-  public void setDoAnimation(boolean doAnimation) {
-    this.doAnimation = doAnimation;
-  }
-
-  public Screen getSplashScreen() {
-    return splashScreen;
-  }
-
-  public void setSplashScreen(Screen splashScreen) {
-    this.splashScreen = splashScreen;
-  }
-
-  public PImage getSplashBg() {
-    return splashBg;
-  }
-
-  public void setSplashBg(PImage splashBg) {
-    this.splashBg = splashBg;
-  }
-
-  public String getSplashBgFile() {
-    return splashBgFile;
-  }
-
-  public void setSplashBgFile(String splashBgFile) {
-    this.splashBgFile = splashBgFile;
-  }
-
-  public Grid getMaze1() {
-    return maze1;
-  }
-
-  public void setMaze1(Grid maze1) {
-    this.maze1 = maze1;
-  }
-
-  public PImage getMaze1Bg() {
-    return maze1Bg;
-  }
-
-  public void setMaze1Bg(PImage maze1Bg) {
-    this.maze1Bg = maze1Bg;
-  }
-
-  public String getMaze1BgFile() {
-    return maze1BgFile;
-  }
-
-  public void setMaze1BgFile(String maze1BgFile) {
-    this.maze1BgFile = maze1BgFile;
-  }
-
-  public PImage getPiece1() {
-    return piece1;
-  }
-
-  public void setPiece1(PImage piece1) {
-    this.piece1 = piece1;
-  }
-
-  public String getPiece1File() {
-    return piece1File;
-  }
-
-  public void setPiece1File(String piece1File) {
-    this.piece1File = piece1File;
-  }
-
-  public int getPiece1Row() {
-    return piece1Row;
-  }
-
-  public void setPiece1Row(int piece1Row) {
-    this.piece1Row = piece1Row;
-  }
-
-  public int getPiece1Col() {
-    return piece1Col;
-  }
-
-  public void setPiece1Col(int piece1Col) {
-    this.piece1Col = piece1Col;
-  }
-
-  public AnimatedSprite getChick() {
-    return chick;
-  }
-
-  public void setChick(AnimatedSprite chick) {
-    this.chick = chick;
-  }
-
-  public String getChickFile() {
-    return chickFile;
-  }
-
-  public void setChickFile(String chickFile) {
-    this.chickFile = chickFile;
-  }
-
-  public String getChickJson() {
-    return chickJson;
-  }
-
-  public void setChickJson(String chickJson) {
-    this.chickJson = chickJson;
-  }
-
-  public int getChickRow() {
-    return chickRow;
-  }
-
-  public void setChickRow(int chickRow) {
-    this.chickRow = chickRow;
-  }
-
-  public int getChickCol() {
-    return chickCol;
-  }
-
-  public void setChickCol(int chickCol) {
-    this.chickCol = chickCol;
-  }
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public Button getB1() {
-    return b1;
-  }
-
-  public void setB1(Button b1) {
-    this.b1 = b1;
-  }
-
-  public World getSkyWorld() {
-    return skyWorld;
-  }
-
-  public void setSkyWorld(World skyWorld) {
-    this.skyWorld = skyWorld;
-  }
-
-  public PImage getSkyWorldBg() {
-    return skyWorldBg;
-  }
-
-  public void setSkyWorldBg(PImage skyWorldBg) {
-    this.skyWorldBg = skyWorldBg;
-  }
-
-  public String getSkyWorldBgFile() {
-    return skyWorldBgFile;
-  }
-
-  public void setSkyWorldBgFile(String skyWorldBgFile) {
-    this.skyWorldBgFile = skyWorldBgFile;
-  }
-
-  public Sprite getZapdos() {
-    return zapdos;
-  }
-
-  public void setZapdos(Sprite zapdos) {
-    this.zapdos = zapdos;
-  }
-
-  public String getZapdosFile() {
-    return zapdosFile;
-  }
-
-  public void setZapdosFile(String zapdosFile) {
-    this.zapdosFile = zapdosFile;
-  }
-
-  public int getZapdosStartX() {
-    return zapdosStartX;
-  }
-
-  public void setZapdosStartX(int zapdosStartX) {
-    this.zapdosStartX = zapdosStartX;
-  }
-
-  public int getZapdosStartY() {
-    return zapdosStartY;
-  }
-
-  public void setZapdosStartY(int zapdosStartY) {
-    this.zapdosStartY = zapdosStartY;
-  }
-
-  public World getBrickWorld() {
-    return brickWorld;
-  }
-
-  public void setBrickWorld(World brickWorld) {
-    this.brickWorld = brickWorld;
-  }
-
-  public PImage getBrickWorldBg() {
-    return brickWorldBg;
-  }
-
-  public void setBrickWorldBg(PImage brickWorldBg) {
-    this.brickWorldBg = brickWorldBg;
-  }
-
-  public String getBrickWorldBgFile() {
-    return brickWorldBgFile;
-  }
-
-  public void setBrickWorldBgFile(String brickWorldBgFile) {
-    this.brickWorldBgFile = brickWorldBgFile;
-  }
-
-  public Platform getPlat() {
-    return plat;
-  }
-
-  public void setPlat(Platform plat) {
-    this.plat = plat;
-  }
-
-  public World getEndScreen() {
-    return endScreen;
-  }
-
-  public void setEndScreen(World endScreen) {
-    this.endScreen = endScreen;
-  }
-
-  public PImage getEndBg() {
-    return endBg;
-  }
-
-  public void setEndBg(PImage endBg) {
-    this.endBg = endBg;
-  }
-
-  public String getEndBgFile() {
-    return endBgFile;
-  }
-
-  public void setEndBgFile(String endBgFile) {
-    this.endBgFile = endBgFile;
-  }
-
-  public Screen getCurrentScreen() {
-    return currentScreen;
-  }
-
-  public void setCurrentScreen(Screen currentScreen) {
-    this.currentScreen = currentScreen;
-  }
-
-  public CycleTimer getSlowCycleTimer() {
-    return slowCycleTimer;
-  }
-
-  public void setSlowCycleTimer(CycleTimer slowCycleTimer) {
-    this.slowCycleTimer = slowCycleTimer;
-  }
-
-  public boolean isStart() {
-    return start;
-  }
-
-  public void setStart(boolean start) {
-    this.start = start;
-  }
-
+ 
 
 } //close class

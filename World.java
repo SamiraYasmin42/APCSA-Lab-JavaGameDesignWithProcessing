@@ -16,6 +16,12 @@ public class World extends Screen{
   long lastSpriteUpdateTime = 0;
 
   //------------------ WORLD CONSTRUCTORS --------------------//
+
+  // World Constructor #0: Creates a World with the specificed background image file
+  public World(PApplet p, String name, String bgFile){
+    super(p, name, bgFile);
+  } 
+  
   // World Constructor #1: Creates a World with the specificed background image
   public World(PApplet p, String name, PImage bgImg) {
     super(p, name, bgImg);
@@ -23,12 +29,12 @@ public class World extends Screen{
 
   // World Constructor #2: Creates a World with no background image
   public World(PApplet p, String name) {
-    this(p, name, null);
+    this(p, name, new PImage()); //???
   }
   
   // World Constructor #3: Creates a default World
   public World(PApplet p) {
-    this(p, "default world", null);
+    this(p, "default world", new PImage()); //???
   }
 
   // World Constructor #4 for Moveable Backgrounds: Image can be scaled to be bigger so the background doesn't run out too quickly

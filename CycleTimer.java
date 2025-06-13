@@ -31,13 +31,17 @@ public class CycleTimer {
     }
 
     // Returns the milliseconds from the last reset
-    public long getCycleTime(){
+    public long getTime(){
         return getGameTime() - lastReset;
+    }
+
+    public long getCountdown(){
+        return frequencyMs - getTime();
     }
 
     public boolean isDone(){
         // this.frequencyMs = frequencyMs;
-        if(getCycleTime() > frequencyMs){
+        if(getTime() > frequencyMs){
             resetCycleTime();
             return true;
         }
@@ -65,7 +69,7 @@ public class CycleTimer {
 
     public String toString(){
         return "CycleTimer: "
-            + "\tCurrentTime: " + getCycleTime()
+            + "\tCurrentTime: " + getTime()
             + "\tfreqMs" + frequencyMs;
     }
 

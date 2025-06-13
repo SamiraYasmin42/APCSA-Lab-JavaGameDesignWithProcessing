@@ -4,7 +4,7 @@
  * Added example for using grid method setAllMarks()
  */
 
-//import processing.sound.*;
+import processing.sound.*;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -142,8 +142,8 @@ public class Game extends PApplet{
 
     //SETUP: Sound
     // Load a soundfile from the sounds folder of the sketch and play it back
-     //song = new SoundFile(p, "sounds/Lenny_Kravitz_Fly_Away.mp3");
-     //song.play();
+     SoundFile mazesong = new SoundFile(p, "sounds/chill.mp3");
+     mazesong.play();
     
     System.out.println("Game started...");
 

@@ -88,6 +88,7 @@ public class Game extends PApplet{
     maze1Bg = p.loadImage(maze1BgFile);
     maze1Bg.resize(p.width, p.height);
     endBg = p.loadImage(endBgFile);
+    endBg2= p.loadImage(endBgFile2);
 
     //SETUP: If non-moving, Resize all BG images to exactly match the screen size
     splashBg.resize(p.width, p.height);

@@ -98,6 +98,7 @@ public class Game extends PApplet{
     splashScreen = new Screen(p, "splash", splashBg);
     maze1 = new Grid(p, "maze1", maze1Bg, 15, 21);
     endScreen = new World(p, "end", endBg);
+    endScreen2 = new World(p, "end", endBg2);
     currentScreen = splashScreen;
 
     //SETUP: Construct Game objects used in All Screens

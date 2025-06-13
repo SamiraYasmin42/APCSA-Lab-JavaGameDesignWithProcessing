@@ -131,10 +131,13 @@ public class Game extends PApplet{
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");
-    timer = new Button(p, "RECT", 100,10, 165, 50, "1:00");
+    timer = new Button(p, "RECT", 300,10, 175, 50, "1:00");
     mazeTime = new CycleTimer(p, 45000);
-    timer.setText("Time Left: "+ (double)(mazeTime.getTime())/1000 );
+    timer.setText("Time Now: "+ (double)(mazeTime.getTime())/1000 );
     maze1.addSprite(timer);
+
+    //edit the timer
+    timer.setButtonColor(PColor.WHITE);
 
     System.out.println("Done loading Level 1 (maze1)...");
 
@@ -326,7 +329,7 @@ public class Game extends PApplet{
       // Print a '1' in console when maze1
       System.out.print("1");
 
-      timer.setText("Time Left: "+(double)(mazeTime.getTime()/1000) );
+      timer.setText("Time Now: "+(double)(mazeTime.getTime()/1000) );
 
       // Displays the chick image
       GridLocation chickLoc = new GridLocation(chickRow, chickCol);

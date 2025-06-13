@@ -82,23 +82,23 @@ public class Game extends PApplet{
     //SETUP: Set the title on the title bar
     surface.setTitle(titleText);
 
-    //SETUP: Load BG images used in all screens
-    splashBg = p.loadImage(splashBgFile);
-    splashBg.resize(800,600);
-    maze1Bg = p.loadImage(maze1BgFile);
-    maze1Bg.resize(p.width, p.height);
-    endBg = p.loadImage(endBgFile);
+    // //SETUP: Load BG images used in all screens
+    // splashBg = p.loadImage(splashBgFile);
+    // splashBg.resize(800,600);
+    // maze1Bg = p.loadImage(maze1BgFile);
+    // maze1Bg.resize(p.width, p.height);
+    // endBg = p.loadImage(endBgFile);
 
-    //SETUP: If non-moving, Resize all BG images to exactly match the screen size
-    splashBg.resize(p.width, p.height);
-    maze1Bg.resize(p.width, p.height);
-    endBg.resize(p.width, p.height);   
+    // //SETUP: If non-moving, Resize all BG images to exactly match the screen size
+    // splashBg.resize(p.width, p.height);
+    // maze1Bg.resize(p.width, p.height);
+    // endBg.resize(p.width, p.height);   
 
     //SETUP: Construct each Screen, World, Grid
-    splashScreen = new Screen(p, "splash", splashBg);
-    maze1 = new Grid(p, "maze1", maze1Bg, 15, 21);
-    endScreen = new World(p, "end", endBg);
-    endScreen2 = new World(p, "end", endBg2);
+    splashScreen = new Screen(p, "splash", splashBgFile);
+    maze1 = new Grid(p, "maze1", maze1BgFile, 15, 21);
+    endScreen = new World(p, "end", endBgFile);
+    endScreen2 = new World(p, "end2", endBgFile2);
     currentScreen = splashScreen;
 
     //SETUP: Construct Game objects used in All Screens

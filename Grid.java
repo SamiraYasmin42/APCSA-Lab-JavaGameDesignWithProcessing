@@ -32,13 +32,13 @@ public class Grid extends World{
   }
 
   //Grid constructor #3: Sets background image + rows & cols
-  public Grid(PApplet p, String screenName, PImage bg, int rows, int cols){
-    this(p, screenName, bg, null, rows, cols);
+  public Grid(PApplet p, String screenName, String bgFile, int rows, int cols){
+    this(p, screenName, bgFile, null, rows, cols);
   }
 
   // Grid constructor #4: Takeas in 2D String array parameter to set tile marks
-  public Grid(PApplet p, String screenName, PImage bg, String[][] tileMarks, int rows, int cols){
-    super(p, screenName, bg);
+  public Grid(PApplet p, String screenName, String bgFile, String[][] tileMarks, int rows, int cols){
+    super(p, screenName, bgFile);
 
     this.rows = rows;
     this.cols = cols;

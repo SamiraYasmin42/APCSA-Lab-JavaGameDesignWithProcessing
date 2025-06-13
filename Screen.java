@@ -28,6 +28,29 @@ public class Screen{
 
     //------------------ SCREEN CONSTRUCTORS --------------------//
 
+ /**
+     * Screen Constructor #0: Stationary background from file
+     * @param p             Processing applet
+     * @param screenName    String to track Screens
+     * @param bg            stationary background image
+     */
+    public Screen(PApplet p, String screenName, String bgFile) {
+        this.p = p;
+        this.isMoveable = false;
+        this.setName(screenName);
+
+        bg = p.loadImage(bgFile);
+        bg.resize(p.width, p.height);
+
+
+        if(bg != null) {
+            this.setBg(bg);
+            System.out.println("bg of " + screenName + " Screen: " + Util.toStringPImage(bg));
+        }
+        startTime = getTotalTime(); //?
+
+    }
+
     /**
      * Screen Constructor #1: Stationary background image
      * @param p             Processing applet

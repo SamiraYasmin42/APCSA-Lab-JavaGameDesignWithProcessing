@@ -28,7 +28,7 @@ public class Game extends PApplet{
   // VARIABLES: splashScreen
   Screen splashScreen;
   PImage splashBg;
-  String splashBgFile = "images/startmaze.png";
+  String splashBgFile = "images/splash.png";
   //SoundFile song;
 
   // VARIABLES: maze1 Screen (pieces on a grid pattern)
@@ -160,9 +160,6 @@ public class Game extends PApplet{
       {"R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R","R"},
 
     };
-   // Button timer = new Button(p, "RECT", 100,100, 500, 500, "1:00");
-   // CycleTimer mazeTime = new CycleTimer(p, 60000);
-   // mazeTime.setText(mazeTime.getCycleTime());
     maze1.setAllMarks(tileMarks);
     maze1.startPrintingGridMarks();
     System.out.println("Done loading Level 1 (maze1)...");

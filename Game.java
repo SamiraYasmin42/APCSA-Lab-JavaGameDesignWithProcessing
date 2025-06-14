@@ -131,7 +131,7 @@ public class Game extends PApplet{
     System.out.println("Done loading Level 1 (maze1)...");
     timer = new Button(p, "RECT", 300,10, 175, 50, "1:00");
     mazeTime = new CycleTimer(p, 45000);
-    timer.setText("Time Now: "+ (double)(mazeTime.getCountdown())/1000 );
+    timer.setText("Time Left: "+ (double)(mazeTime.getCountdown())/1000 );
     maze1.addSprite(timer);
 
     //edit the timer
@@ -327,7 +327,7 @@ public class Game extends PApplet{
       // Print a '1' in console when maze1
       System.out.print("1");
 
-      timer.setText("Time Now: "+(double)(mazeTime.getCountdown()/1000) );
+      timer.setText("Time Left: "+(double)(mazeTime.getCountdown()/1000) );
 
       // Displays the chick image
       GridLocation chickLoc = new GridLocation(chickRow, chickCol);

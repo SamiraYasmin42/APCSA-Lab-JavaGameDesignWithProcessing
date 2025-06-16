@@ -25,7 +25,15 @@
         "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-macosx-universal.jar",
         "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-2.5.0-natives-windows-amd64.jar",
         "c:\\Program Files\\Processing\\app\\resources\\core\\library\\jogl-all-main-2.5.0.jar",
-        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\kotlin-stdlib-2.0.20.jar"
+        "c:\\Program Files\\Processing\\app\\resources\\core\\library\\kotlin-stdlib-2.0.20.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\mp3spi-1.9.5.4.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\sound.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\jlayer-1.0.1.4.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\jorbis-0.0.17.4.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\jportaudio.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\jsyn-17.1.0.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\tritonus-share-0.3.7.4.jar",
+        "c:\\Users\\jabia\\Documents\\Processing\\libraries\\sound\\library\\vorbisspi-1.0.3.3.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }

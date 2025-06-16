@@ -4,10 +4,10 @@
  * Added example for using grid method setAllMarks()
  */
 
-import processing.sound.*;
-
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.*;
+
 
 public class Game extends PApplet{
 
@@ -296,7 +296,7 @@ public class Game extends PApplet{
       extraText = currentScreen.getName();
 
       //set the title each loop
-      surface.setTitle(titleText + "\t// CurrentScreen: " + extraText + " \t // Name: " + name );
+      surface.setTitle(titleText + "\t -Prakriti C & Samira Y" );
 
       //adjust the extra text as desired
     

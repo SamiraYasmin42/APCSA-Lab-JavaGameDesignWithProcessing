@@ -327,7 +327,7 @@ public class Game extends PApplet{
       // Print a '1' in console when maze1
       System.out.print("1");
 
-      timer.setText("Time Left: "+(double)(mazeTime.getCountdown()/1000) );
+      timer.setText("Time Left: "+(double)(mazeTime.getCountdown()/100)/10 );
 
       // Displays the chick image
       GridLocation chickLoc = new GridLocation(chickRow, chickCol);
